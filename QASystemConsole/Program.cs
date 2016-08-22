@@ -16,16 +16,22 @@ namespace QASystemConsole
             var apiKey = ConfigurationManager.AppSettings["apikey"].ToString();
             WebKnoxClient client = new WebKnoxClient(apiKey);
 
-
+            
             Console.ForegroundColor = ConsoleColor.White;
-            WriteLine("Please Enter A Factoid Question(Ex:what is csharp)");
-            Console.ForegroundColor = ConsoleColor.Red;
-            string question = ReadLine();
+            WriteLine("A Demo App for Factoid Based Question Answering System (Ex:what is csharp)");
+            WriteLine("Press Ctrl+c to Exit)");
+            WriteLine(Environment.NewLine);
 
-            question = question.Trim();
-            Console.ForegroundColor = ConsoleColor.Green;
-            var response = client.Query(question);
-            WriteLine(response.Answer);
+            for (;;)
+            {
+                WriteLine(">>>Please Enter A Question");
+                string question = ReadLine();
+
+                question = question.Trim();
+                var response = client.Query(question);
+                WriteLine(">>>" + response.Answer);
+                WriteLine(Environment.NewLine);
+            }
             ReadLine();
         }
     }
